@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# marimo
+__marimo__/
+
+# OS
+.DS_Store
+
+# 出力（必要なら experiments 配下で個別に管理）
+*.tmp
