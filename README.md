@@ -16,6 +16,7 @@
 complex_systems/
 ├── notes/         # 数学的基礎の手書きノート (Markdown + LaTeX)
 ├── experiments/   # 1 実験 = 1 ディレクトリ（理論メモ + コード + 可視化 + 気づき）
+├── lectures/      # 手法・道具の講義資料 (PDF)
 └── lib/           # 共通ユーティリティ
 ```
 
@@ -45,6 +46,10 @@ complex_systems/
 | 腰を据えた理論調査 | Claude Code の `deep-research` 等の調査ワークフロー |
 | 再現性・記録 | このリポジトリ（実験を git で蓄積） |
 | 数式の理解 | `notes/` の Markdown + LaTeX |
+
+道具そのものの使い方・使い分けは [`lectures/`](lectures/) に講義資料(PDF)として蓄積する。
+
+- [#01 ノートブック実験環境入門 — Jupyter と marimo](lectures/notebooks_jupyter_vs_marimo.pdf)
 
 ## 環境構築
 
