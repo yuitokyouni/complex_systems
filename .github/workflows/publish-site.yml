@@ -30,9 +30,13 @@ jobs:
       - name: Install Python deps
         run: pip install jupyter nbformat
 
-      - name: Render and publish to gh-pages
-        uses: quarto-dev/quarto-actions/publish@v2
+      - name: Render site
+        uses: quarto-dev/quarto-actions/render@v2
+
+      # peaceiris/actions-gh-pages は gh-pages ブランチが無ければ自動で作成する。
+      # quarto publish gh-pages のような「事前にブランチを作れ」制約が無い。
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
