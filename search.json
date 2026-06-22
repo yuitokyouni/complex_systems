@@ -1,0 +1,788 @@
+[
+  {
+    "objectID": "notes/synchronization.html",
+    "href": "notes/synchronization.html",
+    "title": "",
+    "section": "",
+    "text": "コード",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "同期現象"
+    ]
+  },
+  {
+    "objectID": "notes/synchronization.html#モデル",
+    "href": "notes/synchronization.html#モデル",
+    "title": "",
+    "section": "1. モデル",
+    "text": "1. モデル\n\\(N\\) 個の位相振動子。各 \\(i\\) は自然振動数 \\(\\omega_i\\)（固有のテンポ）を持ち、全体と結合する：\n\\[\\frac{d\\theta_i}{dt} = \\omega_i + \\frac{K}{N}\\sum_{j=1}^{N}\\sin(\\theta_j-\\theta_i)\\]\n\n\\(\\theta_i\\in[0,2\\pi)\\): 振動子 \\(i\\) の位相\n\\(\\omega_i\\): 自然振動数。分布 \\(g(\\omega)\\)（例: 平均 0 の正規分布）から引く\n\\(K\\ge 0\\): 結合強度。これが唯一の制御パラメータ\n\\(\\sin(\\theta_j-\\theta_i)\\): 位相差を縮める向きの引き込み（位相が近づくと小さく、揃うと 0）",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "同期現象"
+    ]
+  },
+  {
+    "objectID": "notes/synchronization.html#秩序変数同期を測る一つの複素数",
+    "href": "notes/synchronization.html#秩序変数同期を測る一つの複素数",
+    "title": "",
+    "section": "2. 秩序変数：同期を測る一つの複素数",
+    "text": "2. 秩序変数：同期を測る一つの複素数\n\\[r\\,e^{i\\psi} = \\frac{1}{N}\\sum_{j=1}^{N} e^{i\\theta_j}\\]\n\n\\(r\\)（振幅, \\(0\\le r\\le1\\)）: 同期の度合い。\\(r=0\\) で完全バラバラ、\\(r=1\\) で完全同期\n\\(\\psi\\)（偏角）: 集団の平均位相\n\n単位円上に全振動子を点で打ち、その重心を見ているのと同じ。重心が原点近く（散らばり）なら \\(r\\approx0\\)、一塊なら \\(r\\approx1\\)。\n\n平均場表現（数値計算で重要）\n秩序変数を使うと、結合項が各 \\(i\\) について閉じた形に書き直せる：\n\\[\\frac{d\\theta_i}{dt} = \\omega_i + K\\,r\\,\\sin(\\psi-\\theta_i)\\]\n二重和 \\(O(N^2)\\) が \\(O(N)\\) になる。各振動子は「平均場 \\((r,\\psi)\\) に引っ張られる」とも読める。 結合が生む秩序 \\(r\\) が、その秩序自身を強める——自己無撞着な協同現象。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "同期現象"
+    ]
+  },
+  {
+    "objectID": "notes/synchronization.html#同期の相転移",
+    "href": "notes/synchronization.html#同期の相転移",
+    "title": "",
+    "section": "3. 同期の相転移",
+    "text": "3. 同期の相転移\n\\(K\\) を 0 から上げていくと：\n\n\\(K &lt; K_c\\): 各自が自然振動数で回り、位相は散らばったまま。\\(r\\approx 0\\)（非同期）。\n\\(K &gt; K_c\\): 自然振動数が中心に近い振動子から順に引き込まれ（位相ロック）、一塊になって回り始める。\\(r&gt;0\\) が自発的に立ち上がる（同期）。\n\nこれは温度を下げると磁石が自発磁化を持つのと同じ構造の 二次相転移。\\(r\\) が秩序変数、\\(K\\) が制御パラメータに対応する。\n\n臨界結合強度 \\(K_c\\)\n自然振動数分布 \\(g(\\omega)\\) が単峰・対称なら、Kuramoto の自己無撞着解析から\n\\[K_c = \\frac{2}{\\pi\\,g(0)}\\]\n\n正規分布（標準偏差 \\(\\sigma\\)）: \\(g(0)=\\dfrac{1}{\\sigma\\sqrt{2\\pi}}\\) より \\(K_c = \\sigma\\sqrt{\\dfrac{8}{\\pi}} \\approx 1.596\\,\\sigma\\)\nLorentz 分布（半値半幅 \\(\\gamma\\)）: \\(K_c = 2\\gamma\\)\n\n分布が広い（テンポがバラバラ）ほど \\(K_c\\) は大きい＝同期しにくい、という直観に合う。\n臨界点直上では \\(r \\sim \\sqrt{K-K_c}\\) で立ち上がる（平均場相転移の臨界指数 1/2）。有限 \\(N\\) では転移が少し鈍る（有限サイズ効果）。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "同期現象"
+    ]
+  },
+  {
+    "objectID": "notes/synchronization.html#ロジスティック写像実験01との対比",
+    "href": "notes/synchronization.html#ロジスティック写像実験01との対比",
+    "title": "",
+    "section": "4. ロジスティック写像（実験01）との対比",
+    "text": "4. ロジスティック写像（実験01）との対比\n\n\n\n\n実験01 ロジスティック写像\n実験02 Kuramoto\n\n\n\n\n系\n1 変数の離散写像\nN 体の連続力学系\n\n\n制御パラメータ\n\\(r\\)\n\\(K\\)\n\n\n起きること\n秩序 → カオス（複雑化）\n無秩序 → 秩序（自己組織化）\n\n\n鍵概念\n分岐・カオス・普遍性\n相転移・協同現象・臨界\n\n\n\n「少数自由度のカオス」と「多自由度の自己組織化」は複雑系の両輪。後者は統計力学的視点 （実験06 Ising、相転移）へ直結する。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "同期現象"
+    ]
+  },
+  {
+    "objectID": "notes/synchronization.html#金融他分野との接続メモ",
+    "href": "notes/synchronization.html#金融他分野との接続メモ",
+    "title": "",
+    "section": "5. 金融・他分野との接続（メモ）",
+    "text": "5. 金融・他分野との接続（メモ）\n\n市場参加者の戦略の「同期」＝群集行動・バブル/クラッシュの一斉化。結合強度の上昇が 協同現象を生むという描像は、流動性・情報伝播の文脈で示唆的。\n送電網は文字通り Kuramoto 型（発電機の位相同期）。同期崩壊＝大規模停電。\n臨界点近傍での「ゆらぎの増大・相関長の発散」は、SOC（実験03）や金融の臨界性とも通底。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "同期現象"
+    ]
+  },
+  {
+    "objectID": "notes/synchronization.html#参考キーワード",
+    "href": "notes/synchronization.html#参考キーワード",
+    "title": "",
+    "section": "参考キーワード",
+    "text": "参考キーワード\n\nStrogatz, Sync（一般向け）/ Pikovsky, Rosenblum, Kurths, Synchronization（教科書）\n秩序変数 (order parameter)、平均場 (mean field)、位相ロック (phase locking)\n二次相転移、臨界結合強度 \\(K_c\\)、有限サイズ効果",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "同期現象"
+    ]
+  },
+  {
+    "objectID": "notes/nonlinear_dynamics.html",
+    "href": "notes/nonlinear_dynamics.html",
+    "title": "",
+    "section": "",
+    "text": "コード",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "非線形力学系"
+    ]
+  },
+  {
+    "objectID": "notes/nonlinear_dynamics.html#力学系とは",
+    "href": "notes/nonlinear_dynamics.html#力学系とは",
+    "title": "",
+    "section": "1. 力学系とは",
+    "text": "1. 力学系とは\n状態が時間とともに決定論的に更新される系。離散時間なら\n\\[x_{n+1} = f(x_n)\\]\nという写像 (map) で表す。\\(f\\) を繰り返し適用する（軌道 orbit を追う）のが基本操作。連続時間なら微分方程式 \\(\\dot{x} = f(x)\\) になる。\n複雑系の文脈で重要なのは、\\(f\\) が非線形だと、たった 1 次元・1 パラメータでもカオスが現れること。線形系では絶対に起きない。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "非線形力学系"
+    ]
+  },
+  {
+    "objectID": "notes/nonlinear_dynamics.html#ロジスティック写像",
+    "href": "notes/nonlinear_dynamics.html#ロジスティック写像",
+    "title": "",
+    "section": "2. ロジスティック写像",
+    "text": "2. ロジスティック写像\n\\[x_{n+1} = r\\, x_n (1 - x_n), \\qquad x_n \\in [0,1],\\ r \\in [0,4]\\]\n\nもともとは個体群動態モデル。\\(x_n\\) は環境収容力に対する個体数の割合。\n\\(r x_n\\) が増殖、\\((1 - x_n)\\) が過密による抑制。両者の積（非線形項）が全ての面白さの源。\n\\(r \\le 4\\) なら \\([0,1]\\) が \\([0,1]\\) に写る（軌道が発散しない）。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "非線形力学系"
+    ]
+  },
+  {
+    "objectID": "notes/nonlinear_dynamics.html#不動点とその安定性",
+    "href": "notes/nonlinear_dynamics.html#不動点とその安定性",
+    "title": "",
+    "section": "3. 不動点とその安定性",
+    "text": "3. 不動点とその安定性\n不動点 (fixed point) \\(x^*\\) は \\(f(x^*) = x^*\\) を満たす点。\n\\[x^* = r x^* (1 - x^*) \\;\\Rightarrow\\; x^* = 0 \\ \\text{または}\\ x^* = 1 - \\tfrac{1}{r}\\]\n安定性は微分（乗数 multiplier）\\(f'(x^*)\\) の絶対値で決まる：\n\n\\(|f'(x^*)| &lt; 1\\) → 安定（近傍の軌道が引き込まれる）\n\\(|f'(x^*)| &gt; 1\\) → 不安定（はじかれる）\n\n\\(f'(x) = r(1 - 2x)\\) なので、\n\n\\(x^*=0\\): \\(f'(0) = r\\) → \\(r &lt; 1\\) で安定\n\\(x^*=1-1/r\\): \\(f'(x^*) = 2 - r\\) → \\(1 &lt; r &lt; 3\\) で安定（\\(|2-r|&lt;1\\)）\n\nつまり \\(r=1\\) で 2 つの不動点が安定性を交換し（トランスクリティカル分岐）、\\(r=3\\) で非自明な不動点が不安定化する。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "非線形力学系"
+    ]
+  },
+  {
+    "objectID": "notes/nonlinear_dynamics.html#周期倍分岐とカオスへの道",
+    "href": "notes/nonlinear_dynamics.html#周期倍分岐とカオスへの道",
+    "title": "",
+    "section": "4. 周期倍分岐とカオスへの道",
+    "text": "4. 周期倍分岐とカオスへの道\n\\(r = 3\\) を超えると不動点が不安定化し、代わりに周期 2 の軌道（2 点を行き来）が安定になる。さらに \\(r\\) を上げると 2 → 4 → 8 → … と周期が倍々に増える。これが 周期倍分岐 (period-doubling bifurcation)。\n分岐が起きる \\(r\\) の値 \\(r_k\\) は、有限の値 \\(r_\\infty \\approx 3.5699\\) に幾何級数的に集積する。その縮み率が\n\\[\\delta = \\lim_{k\\to\\infty} \\frac{r_k - r_{k-1}}{r_{k+1} - r_k} \\approx 4.6692\\ldots\\]\nファイゲンバウム定数 (Feigenbaum constant)。驚くべきは、この値が 写像の詳細によらない普遍定数であること（一山型写像なら何でも同じ値になる）。これは繰り込み群的な普遍性の現れで、複雑系における「ミクロの詳細に依らないマクロな法則性」の典型例。\n\\(r &gt; r_\\infty\\) ではカオス領域に入るが、その中にも周期窓（例: \\(r \\approx 3.83\\) の周期 3 窓）が点在する。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "非線形力学系"
+    ]
+  },
+  {
+    "objectID": "notes/nonlinear_dynamics.html#カオスの定量化lyapunov-指数",
+    "href": "notes/nonlinear_dynamics.html#カオスの定量化lyapunov-指数",
+    "title": "",
+    "section": "5. カオスの定量化：Lyapunov 指数",
+    "text": "5. カオスの定量化：Lyapunov 指数\nカオスの本質は初期値鋭敏性：近接した 2 軌道が指数的に乖離する。その指数的乖離率が Lyapunov 指数：\n\\[\\lambda = \\lim_{N\\to\\infty} \\frac{1}{N} \\sum_{n=0}^{N-1} \\ln \\left| f'(x_n) \\right|\\]\n\n\\(\\lambda &lt; 0\\): 軌道が収束（不動点・周期軌道）→ 予測可能\n\\(\\lambda &gt; 0\\): 指数的に乖離（カオス）→ 長期予測不能\n\\(\\lambda = 0\\): 分岐点・周期窓の縁\n\nロジスティック写像では \\(f'(x_n) = r(1 - 2x_n)\\) を軌道に沿って平均すればよい。\\(\\lambda(r)\\) を描くと、分岐図の構造と完全に対応する（\\(\\lambda\\) が 0 を上にまたぐ点で分岐・カオス突入が起きる）。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "非線形力学系"
+    ]
+  },
+  {
+    "objectID": "notes/nonlinear_dynamics.html#金融との接続メモ",
+    "href": "notes/nonlinear_dynamics.html#金融との接続メモ",
+    "title": "",
+    "section": "6. 金融との接続（メモ）",
+    "text": "6. 金融との接続（メモ）\n\n初期値鋭敏性 = 長期予測の原理的限界。決定論的でも予測不能、という点は市場のランダムウォーク仮説とは別ルートで「予測困難性」を導く。\n普遍性（ファイゲンバウム）= ミクロに依らないマクロ法則。後の SOC・相転移で扱う「べき則の普遍性」と同じ思想の先取り。\n一見ランダムに見える時系列が、低次元の決定論的カオスかもしれない、という視点（→ アトラクタ再構成、相関次元など、後の実験で）。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "非線形力学系"
+    ]
+  },
+  {
+    "objectID": "notes/nonlinear_dynamics.html#参考キーワード",
+    "href": "notes/nonlinear_dynamics.html#参考キーワード",
+    "title": "",
+    "section": "参考キーワード",
+    "text": "参考キーワード\n\nStrogatz, Nonlinear Dynamics and Chaos（定番教科書）\n周期倍分岐、Feigenbaum 普遍性、繰り込み群\n分岐図 (bifurcation diagram)、コブウェブ図 (cobweb plot)\nLyapunov 指数、初期値鋭敏性 (sensitive dependence on initial conditions)",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "非線形力学系"
+    ]
+  },
+  {
+    "objectID": "experiments/01_logistic_map/logistic_map.html",
+    "href": "experiments/01_logistic_map/logistic_map.html",
+    "title": "実験 01: ロジスティック写像 → 分岐図",
+    "section": "",
+    "text": "\\[x_{n+1} = r\\,x_n(1-x_n), \\qquad x_n\\in[0,1],\\ r\\in[0,4]\\]\nたった 1 行の非線形写像から、不動点 → 周期倍分岐 → カオスへの遷移が現れる。 理論は ../../notes/nonlinear_dynamics.md を参照。\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport matplotlib.font_manager as fm\n\n# 日本語フォント (IPAGothic) を登録して豆腐(□)を防ぐ\n_jp = \"/usr/share/fonts/truetype/fonts-japanese-gothic.ttf\"\ntry:\n    fm.fontManager.addfont(_jp)\n    plt.rcParams[\"font.family\"] = fm.FontProperties(fname=_jp).get_name()\nexcept Exception as e:\n    print(\"日本語フォント登録に失敗:\", e)\nplt.rcParams[\"axes.unicode_minus\"] = False\nplt.rcParams[\"figure.dpi\"] = 110\nplt.rcParams[\"figure.figsize\"] = (8, 4)\n\ndef logistic(x, r):\n    return r * x * (1.0 - x)\n\ndef orbit(r, x0=0.5, n=200):\n    xs = np.empty(n)\n    x = x0\n    for i in range(n):\n        x = logistic(x, r)\n        xs[i] = x\n    return xs\n\nprint(\"setup done\")\n\nsetup done",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "01 ノートブック"
+    ]
+  },
+  {
+    "objectID": "experiments/01_logistic_map/logistic_map.html#時系列",
+    "href": "experiments/01_logistic_map/logistic_map.html#時系列",
+    "title": "実験 01: ロジスティック写像 → 分岐図",
+    "section": "1. 時系列",
+    "text": "1. 時系列\n代表的な \\(r\\) での軌道。\\(r\\) を上げるにつれ「収束 → 周期 2 → 周期 4 → カオス」と質的に変わる。\n\nrs = [2.8, 3.2, 3.5, 3.9]\nlabels = [\"r=2.8 (収束: 安定不動点)\", \"r=3.2 (周期 2)\",\n          \"r=3.5 (周期 4)\", \"r=3.9 (カオス)\"]\n\nfig, axes = plt.subplots(2, 2, figsize=(11, 6), sharex=True)\nfor ax, r, lab in zip(axes.ravel(), rs, labels):\n    xs = orbit(r, n=60)\n    ax.plot(xs, \".-\", lw=0.8, ms=4)\n    ax.set_title(lab, fontsize=10)\n    ax.set_ylim(0, 1)\n    ax.set_ylabel(\"x_n\")\naxes[1, 0].set_xlabel(\"n\"); axes[1, 1].set_xlabel(\"n\")\nfig.suptitle(\"ロジスティック写像の時系列\", fontsize=12)\nfig.tight_layout()\nplt.show()",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "01 ノートブック"
+    ]
+  },
+  {
+    "objectID": "experiments/01_logistic_map/logistic_map.html#コブウェブ図",
+    "href": "experiments/01_logistic_map/logistic_map.html#コブウェブ図",
+    "title": "実験 01: ロジスティック写像 → 分岐図",
+    "section": "2. コブウェブ図",
+    "text": "2. コブウェブ図\n写像 \\(y=f(x)\\) と対角線 \\(y=x\\) の間で、\\(x\\to f(x)\\to f(x)\\to\\cdots\\) を折れ線で追う。 交点が不動点、軌道が閉じれば周期、塗りつぶされればカオス。\n\ndef cobweb(ax, r, x0=0.2, n=60):\n    x = np.linspace(0, 1, 400)\n    ax.plot(x, logistic(x, r), \"k\", lw=1)      # y = f(x)\n    ax.plot(x, x, \"0.6\", lw=1)                  # y = x\n    px, py = x0, 0.0\n    for _ in range(n):\n        fy = logistic(px, r)\n        ax.plot([px, px], [py, fy], \"C0\", lw=0.6)   # 垂直: y -&gt; f(x)\n        ax.plot([px, fy], [fy, fy], \"C0\", lw=0.6)   # 水平: x -&gt; f(x)\n        px, py = fy, fy\n    ax.set_title(f\"r = {r}\", fontsize=10)\n    ax.set_xlim(0, 1); ax.set_ylim(0, 1)\n\nfig, axes = plt.subplots(1, 4, figsize=(14, 3.5))\nfor ax, r in zip(axes, [2.8, 3.2, 3.5, 3.9]):\n    cobweb(ax, r)\nfig.suptitle(\"コブウェブ図\", fontsize=12)\nfig.tight_layout()\nplt.show()",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "01 ノートブック"
+    ]
+  },
+  {
+    "objectID": "experiments/01_logistic_map/logistic_map.html#分岐図",
+    "href": "experiments/01_logistic_map/logistic_map.html#分岐図",
+    "title": "実験 01: ロジスティック写像 → 分岐図",
+    "section": "3. 分岐図",
+    "text": "3. 分岐図\n各 \\(r\\) について過渡を捨て、長期的に訪れる \\(x\\) の値（アトラクタ）をプロット。 周期倍分岐の連鎖と、カオス領域中の周期窓が一望できる。\n\ndef bifurcation(r_min=2.5, r_max=4.0, n_r=2000, n_iter=600, n_keep=200, x0=0.5):\n    rs = np.linspace(r_min, r_max, n_r)\n    R, X = [], []\n    for r in rs:\n        x = x0\n        for _ in range(n_iter - n_keep):   # 過渡を捨てる\n            x = logistic(x, r)\n        for _ in range(n_keep):            # 残りを記録\n            x = logistic(x, r)\n            R.append(r); X.append(x)\n    return np.array(R), np.array(X)\n\nR, X = bifurcation()\nfig, ax = plt.subplots(figsize=(11, 6))\nax.plot(R, X, \",k\", alpha=0.25)\nax.set_xlabel(\"r\"); ax.set_ylabel(\"x (long-term)\")\nax.set_title(\"分岐図 (bifurcation diagram)\")\nfor rc in [3.0, 3.449, 3.544, 3.5699]:\n    ax.axvline(rc, color=\"C3\", lw=0.5, ls=\"--\", alpha=0.6)\nax.text(3.57, 0.02, \"r∞≈3.5699\", color=\"C3\", fontsize=8)\nfig.tight_layout()\nplt.show()",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "01 ノートブック"
+    ]
+  },
+  {
+    "objectID": "experiments/01_logistic_map/logistic_map.html#lyapunov-指数-lambdar",
+    "href": "experiments/01_logistic_map/logistic_map.html#lyapunov-指数-lambdar",
+    "title": "実験 01: ロジスティック写像 → 分岐図",
+    "section": "4. Lyapunov 指数 \\(\\lambda(r)\\)",
+    "text": "4. Lyapunov 指数 \\(\\lambda(r)\\)\n\\[\\lambda = \\lim_{N\\to\\infty}\\frac1N\\sum_{n}\\ln|f'(x_n)|,\\qquad f'(x)=r(1-2x)\\]\n\\(\\lambda&lt;0\\) は周期的（予測可能）、\\(\\lambda&gt;0\\) はカオス（初期値鋭敏）。 分岐図と並べると、\\(\\lambda\\) が 0 を上にまたぐ点でカオスに入ることが見える。\n\ndef lyapunov(rs, n_iter=2000, n_skip=500, x0=0.5):\n    lam = np.empty_like(rs)\n    for i, r in enumerate(rs):\n        x = x0\n        for _ in range(n_skip):\n            x = logistic(x, r)\n        s = 0.0\n        for _ in range(n_iter):\n            x = logistic(x, r)\n            s += np.log(abs(r * (1 - 2 * x)) + 1e-12)\n        lam[i] = s / n_iter\n    return lam\n\nrs = np.linspace(2.5, 4.0, 3000)\nlam = lyapunov(rs)\n\nfig, (a1, a2) = plt.subplots(2, 1, figsize=(11, 7), sharex=True)\na1.plot(R, X, \",k\", alpha=0.25); a1.set_ylabel(\"x\"); a1.set_title(\"分岐図\")\na2.axhline(0, color=\"0.6\", lw=1)\na2.plot(rs, lam, \"C0\", lw=0.7)\na2.fill_between(rs, lam, 0, where=(lam &gt; 0), color=\"C3\", alpha=0.4)\na2.set_ylim(-2, 1); a2.set_xlabel(\"r\"); a2.set_ylabel(\"λ\")\na2.set_title(\"Lyapunov 指数（赤: λ&gt;0 = カオス）\")\nfig.tight_layout()\nplt.show()",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "01 ノートブック"
+    ]
+  },
+  {
+    "objectID": "experiments/01_logistic_map/logistic_map.html#ファイゲンバウム定数の数値推定",
+    "href": "experiments/01_logistic_map/logistic_map.html#ファイゲンバウム定数の数値推定",
+    "title": "実験 01: ロジスティック写像 → 分岐図",
+    "section": "5. ファイゲンバウム定数の数値推定",
+    "text": "5. ファイゲンバウム定数の数値推定\n周期倍分岐が起きる \\(r_k\\) の間隔比\n\\[\\delta=\\lim_{k\\to\\infty}\\frac{r_k-r_{k-1}}{r_{k+1}-r_k}\\approx 4.6692\\ldots\\]\nは写像の詳細に依らない普遍定数。ここでは超安定周期点（軌道に \\(x=1/2\\) を含む = \\(f'=0\\) で収束最速）の \\(r\\) を求めて比を取る。\n\nfrom scipy.optimize import brentq\n\ndef superstable_r(period, lo, hi, n=4000):\n    # x=1/2 が周期 period の点となる r。g(r)=f^period(1/2)-1/2 の符号変化を\n    # 区間内で自動検出し（最大 r 側を採用）、brentq で精密化する。\n    def g(r):\n        x = 0.5\n        for _ in range(period):\n            x = logistic(x, r)\n        return x - 0.5\n    rs = np.linspace(lo, hi, n)\n    gs = np.array([g(r) for r in rs])\n    idx = np.where(np.diff(np.sign(gs)) != 0)[0]\n    i = idx[-1]\n    return brentq(g, rs[i], rs[i + 1])\n\n# 周期 2^k の超安定点を囲む探索窓\nwindows = {1: (1.5, 2.5), 2: (3.0, 3.3), 4: (3.4, 3.52),\n           8: (3.54, 3.5565), 16: (3.566, 3.5675), 32: (3.5690, 3.56925)}\nRs = {p: superstable_r(p, lo, hi) for p, (lo, hi) in windows.items()}\nfor p in sorted(Rs):\n    print(f\"周期 {p:&gt;2}: r = {Rs[p]:.7f}\")\n\nvals = [Rs[k] for k in sorted(Rs)]\nprint(\"\\nδ の推定 (超安定 r_k 間隔の比):\")\nfor i in range(1, len(vals) - 1):\n    delta = (vals[i] - vals[i-1]) / (vals[i+1] - vals[i])\n    print(f\"  周期 {2**i:&gt;2}→{2**(i+1):&gt;2}: δ ≈ {delta:.4f}\")\nprint(\"\\n真値 δ ≈ 4.6692016...（写像によらない普遍定数）\")\n\n周期  1: r = 2.0000000\n周期  2: r = 3.2360680\n周期  4: r = 3.4985617\n周期  8: r = 3.5546409\n周期 16: r = 3.5666674\n周期 32: r = 3.5692435\n\nδ の推定 (超安定 r_k 間隔の比):\n  周期  2→ 4: δ ≈ 4.7089\n  周期  4→ 8: δ ≈ 4.6808\n  周期  8→16: δ ≈ 4.6630\n  周期 16→32: δ ≈ 4.6684\n\n真値 δ ≈ 4.6692016...（写像によらない普遍定数）",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "01 ノートブック"
+    ]
+  },
+  {
+    "objectID": "experiments/01_logistic_map/logistic_map.html#まとめ気づき",
+    "href": "experiments/01_logistic_map/logistic_map.html#まとめ気づき",
+    "title": "実験 01: ロジスティック写像 → 分岐図",
+    "section": "まとめ・気づき",
+    "text": "まとめ・気づき\n\n1 次元・1 パラメータの決定論的写像から、周期倍分岐を経てカオスが生まれる。\n分岐図と \\(\\lambda(r)\\) は完全対応：\\(\\lambda\\) が 0 を上にまたぐ所でカオス突入、\\(\\lambda&lt;0\\) に戻る所が周期窓。\nファイゲンバウム定数 \\(\\delta\\approx4.669\\) は写像によらない普遍定数 → 「ミクロの詳細に依らないマクロな法則性」という複雑系の中心テーマの最初の実例。\n初期値鋭敏性（\\(\\lambda&gt;0\\)）は、決定論的でも長期予測が原理的に不能であることを意味する。\n\n次へ: 実験 02（Kuramoto 同期 / marimo）では、同じ「分岐・臨界」をスライダーで対話的に探り、Jupyter との使い分けを体感する。",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "01 ノートブック"
+    ]
+  },
+  {
+    "objectID": "experiments/02_kuramoto/index.html",
+    "href": "experiments/02_kuramoto/index.html",
+    "title": "",
+    "section": "",
+    "text": "コード",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "02 Kuramoto 同期（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/02_kuramoto/index.html#なぜ-marimo-か",
+    "href": "experiments/02_kuramoto/index.html#なぜ-marimo-か",
+    "title": "",
+    "section": "なぜ marimo か",
+    "text": "なぜ marimo か\nこの実験の主役は「\\(K\\) を動かしたときの挙動の変化」。marimo のリアクティブ性 （スライダーを動かすと依存セルだけが自動再実行）が、相転移を体感的に探るのに最適。 実験01（Jupyter・計算してプロット）との手触りの違いを比べてほしい。 ツールの使い分けの考え方は ../../lectures/notebooks_jupyter_vs_marimo.pdf に。",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "02 Kuramoto 同期（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/02_kuramoto/index.html#実行方法",
+    "href": "experiments/02_kuramoto/index.html#実行方法",
+    "title": "",
+    "section": "実行方法",
+    "text": "実行方法\npip install -r ../../requirements.txt\nmarimo edit app.py     # 編集モード（スライダーを動かして探る）\nmarimo run  app.py     # アプリモード（操作だけ）\nmarimo の .py は GitHub 上では図が描画されないため、代表図を make_figures.py で 書き出して以下に掲載する（方針 A）。図を更新するには:\npython3 make_figures.py",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "02 Kuramoto 同期（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/02_kuramoto/index.html#結果",
+    "href": "experiments/02_kuramoto/index.html#結果",
+    "title": "",
+    "section": "結果",
+    "text": "結果\n\n相転移：K が臨界値 Kc を超えると秩序変数 r が立ち上がる\n\n\n\n相転移図\n\n\n正規分布（\\(\\sigma=1\\)）の自然振動数に対する理論値は \\(K_c=\\sigma\\sqrt{8/\\pi}\\approx1.60\\)。 シミュレーション（\\(N=500\\)）でも、ちょうどこの付近で \\(r\\) が 0 から急に立ち上がる。\n\n\n秩序変数 r(t) の時間発展（K が大きいほど速く・高く同期）\n\n\n\n秩序変数の時系列\n\n\n\n\n位相スナップショット（点=振動子, 色=自然振動数, 黒矢印=秩序変数）\n\n\n\n位相スナップショット\n\n\n\\(K=0.5\\) では単位円上に散らばり（\\(r\\approx0\\)）、\\(K\\) を上げるほど一塊に。色を見ると、 自然振動数が中心に近い振動子から順に引き込まれ、極端な振動数の個体が同期から 取り残される様子がわかる。",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "02 Kuramoto 同期（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/02_kuramoto/index.html#構成",
+    "href": "experiments/02_kuramoto/index.html#構成",
+    "title": "",
+    "section": "構成",
+    "text": "構成\n\n\n\n\n\n\n\nファイル\n役割\n\n\n\n\nkuramoto.py\nシミュレーション本体（RK4・平均場表現・秩序変数・理論 \\(K_c\\)）\n\n\napp.py\nmarimo アプリ（スライダーで \\(K,N,\\sigma\\) を動かす）\n\n\nmake_figures.py\n代表図を figures/ に書き出す",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "02 Kuramoto 同期（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/02_kuramoto/index.html#気づき",
+    "href": "experiments/02_kuramoto/index.html#気づき",
+    "title": "",
+    "section": "気づき",
+    "text": "気づき\n\n\\(K_c\\) 近傍で \\(r\\sim\\sqrt{K-K_c}\\) と立ち上がる（平均場相転移の臨界指数 1/2）。有限 \\(N\\) では転移が少し鈍る（有限サイズ効果）。\n「秩序 \\(r\\) が結合を通じて自分自身を強める」自己無撞着な構造が、自発的な秩序形成の核。\n実験01の「秩序→カオス」と本実験の「無秩序→秩序」は、複雑系の両輪。次は統計力学的な相転移（Ising, 実験06）や SOC（実験03）へつなげたい。\n\nスタック対比メモ: marimo はスライダーで「臨界点を跨ぐ瞬間」を体で探れるのが強い。 一方、相転移曲線のような重い計算は一度回して図に固定したいので Jupyter 的でもある—— 本実験では両者を make_figures.py（固定図）と app.py（対話）に分けて両取りした。",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "02 Kuramoto 同期（解説）"
+    ]
+  },
+  {
+    "objectID": "EXPERIMENTS.html",
+    "href": "EXPERIMENTS.html",
+    "title": "",
+    "section": "",
+    "text": "コード",
+    "crumbs": [
+      "ホーム",
+      "実験ダッシュボード"
+    ]
+  },
+  {
+    "objectID": "EXPERIMENTS.html#概念マップ",
+    "href": "EXPERIMENTS.html#概念マップ",
+    "title": "",
+    "section": "概念マップ",
+    "text": "概念マップ\nflowchart TB\n    CS[\"複雑系の数理\"]\n    CS --&gt; ND[\"非線形力学系\"]\n    CS --&gt; SY[\"同期現象\"]\n    CS --&gt; CR[\"臨界・相転移\"]\n\n    ND --&gt; E01[\"実験01 ロジスティック写像&lt;br/&gt;秩序 → カオス\"]\n    SY --&gt; E02[\"実験02 Kuramoto&lt;br/&gt;無秩序 → 秩序（同期）\"]\n    CR --&gt; E02\n    CR --&gt; E03[\"実験03 砂山 BTW&lt;br/&gt;自己組織化臨界・べき則\"]\n\n    E02 -. \"外から K を調整して臨界を跨ぐ\" .-&gt; CRIT((\"臨界\"))\n    E03 -. \"調整なしに臨界へ自己組織化\" .-&gt; CRIT\n\n    classDef done fill:#d7ebff,stroke:#2a6090,color:#12243a;\n    class E01,E02,E03 done;",
+    "crumbs": [
+      "ホーム",
+      "実験ダッシュボード"
+    ]
+  },
+  {
+    "objectID": "EXPERIMENTS.html#実験一覧対応表",
+    "href": "EXPERIMENTS.html#実験一覧対応表",
+    "title": "",
+    "section": "実験一覧（対応表）",
+    "text": "実験一覧（対応表）\n\n\n\n#\n問い\nモデル / 式\n主役の結果\n鍵概念\nスタック\n\n\n\n\n01\n単純な式からカオスは生まれるか\n\\(x_{n+1}=r\\,x_n(1-x_n)\\)\n周期倍分岐 → カオス、\\(\\delta\\approx4.67\\)\n分岐・カオス・初期値鋭敏性・普遍性\nJupyter\n\n\n02\nバラバラの振動子はいつ同期するか\n\\(\\dot\\theta_i=\\omega_i+\\frac{K}{N}\\sum_j\\sin(\\theta_j-\\theta_i)\\)\n\\(K_c\\approx1.60\\) で同期の相転移\n秩序変数・平均場・二次相転移\nmarimo\n\n\n03\nなぜ自然界はべき則だらけか\nBTW 砂山（\\(z_c=4\\), 開放境界）\n臨界へ自己組織化、\\(P(s)\\sim s^{-\\tau},\\ \\tau\\approx1.1\\)\nSOC・べき則・時間スケール分離\nJupyter",
+    "crumbs": [
+      "ホーム",
+      "実験ダッシュボード"
+    ]
+  },
+  {
+    "objectID": "EXPERIMENTS.html#パラメータ条件数値設定",
+    "href": "EXPERIMENTS.html#パラメータ条件数値設定",
+    "title": "",
+    "section": "パラメータ条件（数値設定）",
+    "text": "パラメータ条件（数値設定）\n\n\n\n\n\n\n\n\n\n\n#\n主要パラメータ\n値・範囲\n測定量\nシード\n\n\n\n\n01\n制御パラメータ \\(r\\)\n\\([2.5, 4.0]\\)（分岐図）, 代表値 2.8/3.2/3.5/3.9\n軌道, 分岐図, Lyapunov 指数 \\(\\lambda(r)\\), Feigenbaum \\(\\delta\\)\n初期値 \\(x_0=0.5\\)\n\n\n02\n結合 \\(K\\) / 振動子数 \\(N\\) / ばらつき \\(\\sigma\\)\n\\(K\\in[0,4]\\), \\(N=400\\text{–}500\\), \\(\\sigma=1\\), \\(dt=0.05\\), \\(T=40\\)\n秩序変数 \\(r(t)\\), 定常 \\(r_\\infty(K)\\), 位相配置\n0, 1\n\n\n03\n格子 \\(L\\) / 閾値 \\(z_c\\) / 駆動回数\n\\(L=64\\)(統計)/80(GIF), \\(z_c=4\\), 約 12 万駆動\n雪崩サイズ・継続時間・広がりの分布, 平均高さ\n0",
+    "crumbs": [
+      "ホーム",
+      "実験ダッシュボード"
+    ]
+  },
+  {
+    "objectID": "EXPERIMENTS.html#結果サマリ一言ずつ",
+    "href": "EXPERIMENTS.html#結果サマリ一言ずつ",
+    "title": "",
+    "section": "結果サマリ（一言ずつ）",
+    "text": "結果サマリ（一言ずつ）\n\n01: 1 次元・1 パラメータの決定論的写像でも周期倍分岐を経てカオスに至る。分岐の縮み率 \\(\\delta\\approx4.669\\) は写像によらない普遍定数（ミクロに依らないマクロ法則の最初の例）。\n02: 結合 \\(K\\) を上げると臨界値 \\(K_c=\\sigma\\sqrt{8/\\pi}\\approx1.60\\) で秩序変数 \\(r\\) が自発的に 立ち上がる二次相転移。シミュレーションが理論値とよく一致。\n03: 砂を落とすだけで系は平均高さ \\(\\approx2.12\\) の臨界へ自己組織化し、雪崩サイズが 数桁にわたるべき分布に。金融のファットテール（市場 SOC 仮説）と通底。",
+    "crumbs": [
+      "ホーム",
+      "実験ダッシュボード"
+    ]
+  },
+  {
+    "objectID": "EXPERIMENTS.html#横断テーマ",
+    "href": "EXPERIMENTS.html#横断テーマ",
+    "title": "",
+    "section": "横断テーマ",
+    "text": "横断テーマ\n\n臨界の二つの現れ方: 外部調整で跨ぐ（02）vs 調整なしに自己組織化（03）。\n普遍性: ミクロの詳細に依らないマクロ法則（01 の \\(\\delta\\)、臨界指数）。\n秩序とカオスの両輪: 秩序→カオス（01）と 無秩序→秩序（02, 03）。",
+    "crumbs": [
+      "ホーム",
+      "実験ダッシュボード"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "complex_systems",
+    "section": "",
+    "text": "金融以外の複雑系について、数理を学び・実験で可視化し・楽しく知識を増やすためのサイト。 このページは GitHub リポジトリの内容を Quarto でブラウズ可能なサイトに束ねたもの。",
+    "crumbs": [
+      "ホーム"
+    ]
+  },
+  {
+    "objectID": "index.html#目的",
+    "href": "index.html#目的",
+    "title": "complex_systems",
+    "section": "目的",
+    "text": "目的\n\n数学的基礎を身につけ、複雑系の数理（ABM 以外のアプローチを含む）に詳しくなる\n面白い実験を可視化して、理解を体感に落とし込む\n研究の道具立て（ツール・手法）を用途別に使い分けられるようになる",
+    "crumbs": [
+      "ホーム"
+    ]
+  },
+  {
+    "objectID": "index.html#概念マップ",
+    "href": "index.html#概念マップ",
+    "title": "complex_systems",
+    "section": "概念マップ",
+    "text": "概念マップ\n\n\n\n\n\nflowchart TB\n    CS[\"複雑系の数理\"]\n    CS --&gt; ND[\"非線形力学系\"]\n    CS --&gt; SY[\"同期現象\"]\n    CS --&gt; CR[\"臨界・相転移\"]\n\n    ND --&gt; E01[\"実験01 ロジスティック写像&lt;br/&gt;秩序 → カオス\"]\n    SY --&gt; E02[\"実験02 Kuramoto&lt;br/&gt;無秩序 → 秩序（同期）\"]\n    CR --&gt; E02\n    CR --&gt; E03[\"実験03 砂山 BTW&lt;br/&gt;自己組織化臨界・べき則\"]\n\n    E02 -. \"外から K を調整して臨界を跨ぐ\" .-&gt; CRIT((\"臨界\"))\n    E03 -. \"調整なしに臨界へ自己組織化\" .-&gt; CRIT\n\n    classDef done fill:#d7ebff,stroke:#2a6090,color:#12243a;\n    class E01,E02,E03 done;",
+    "crumbs": [
+      "ホーム"
+    ]
+  },
+  {
+    "objectID": "index.html#実験",
+    "href": "index.html#実験",
+    "title": "complex_systems",
+    "section": "実験",
+    "text": "実験\n\n\n\n#\n問い\n主役の結果\nスタック\n\n\n\n\n01 ロジスティック写像\n単純な式からカオスは生まれるか\n周期倍分岐 → カオス、\\(\\delta\\approx4.67\\)\nJupyter\n\n\n02 Kuramoto\nバラバラの振動子はいつ同期するか\n\\(K_c\\approx1.60\\) で同期の相転移\nmarimo\n\n\n03 砂山モデル\nなぜ自然界はべき則だらけか\n臨界へ自己組織化、\\(P(s)\\sim s^{-\\tau}\\)\nJupyter\n\n\n\n詳しい一覧・パラメータ条件・横断テーマは 実験ダッシュボード へ。",
+    "crumbs": [
+      "ホーム"
+    ]
+  },
+  {
+    "objectID": "index.html#数学ノート",
+    "href": "index.html#数学ノート",
+    "title": "complex_systems",
+    "section": "数学ノート",
+    "text": "数学ノート\n\n非線形力学系 — 不動点・分岐・カオス・Lyapunov・Feigenbaum\n同期現象 — 秩序変数・平均場・相転移・臨界結合\n自己組織化臨界 (SOC) — 臨界・べき則・金融との接続",
+    "crumbs": [
+      "ホーム"
+    ]
+  },
+  {
+    "objectID": "index.html#道具の使い分け",
+    "href": "index.html#道具の使い分け",
+    "title": "complex_systems",
+    "section": "道具の使い分け",
+    "text": "道具の使い分け\n実験ごとに Jupyter / marimo を使い分けている。考え方は講義資料 ノートブック実験環境入門 を参照。",
+    "crumbs": [
+      "ホーム"
+    ]
+  },
+  {
+    "objectID": "experiments/01_logistic_map/index.html",
+    "href": "experiments/01_logistic_map/index.html",
+    "title": "",
+    "section": "",
+    "text": "コード",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "01 ロジスティック写像（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/01_logistic_map/index.html#中身logistic_map.ipynb",
+    "href": "experiments/01_logistic_map/index.html#中身logistic_map.ipynb",
+    "title": "",
+    "section": "中身（logistic_map.ipynb）",
+    "text": "中身（logistic_map.ipynb）\n\n時系列: 代表的な \\(r\\)（収束 / 周期 2 / 周期 4 / カオス）での軌道\nコブウェブ図: 写像の反復を幾何学的に可視化\n分岐図: \\(r\\) を掃引したときの長期的なアトラクタ\nLyapunov 指数 \\(\\lambda(r)\\): カオスの定量化、分岐図との対応\nファイゲンバウム定数の数値推定",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "01 ロジスティック写像（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/01_logistic_map/index.html#実行方法",
+    "href": "experiments/01_logistic_map/index.html#実行方法",
+    "title": "",
+    "section": "実行方法",
+    "text": "実行方法\npip install -r ../../requirements.txt\njupyter notebook logistic_map.ipynb\n# または出力込みで再実行:\njupyter nbconvert --to notebook --execute --inplace logistic_map.ipynb",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "01 ロジスティック写像（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/01_logistic_map/index.html#気づき実験後に追記する欄",
+    "href": "experiments/01_logistic_map/index.html#気づき実験後に追記する欄",
+    "title": "",
+    "section": "気づき（実験後に追記する欄）",
+    "text": "気づき（実験後に追記する欄）\n\n分岐図と Lyapunov 指数 \\(\\lambda(r)\\) は完全に対応する。\\(\\lambda\\) が 0 を上にまたぐ点でカオスに突入し、\\(\\lambda&lt;0\\) に戻る箇所が周期窓（例: \\(r\\approx3.83\\) の周期 3）。\nファイゲンバウム定数 \\(\\delta\\approx4.669\\) は写像の詳細に依らない普遍定数 → 「ミクロの詳細に依らないマクロな法則性」という複雑系の中心テーマの最初の実例。\n次の実験（02 Kuramoto / marimo）では、同じ「分岐・臨界」をスライダーで対話的に探り、Jupyter との使い分けを体感する。",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "01 ロジスティック写像（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/index.html",
+    "href": "experiments/03_sandpile/index.html",
+    "title": "",
+    "section": "",
+    "text": "コード",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 砂山モデル SOC（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/index.html#なぜ-jupyter-か",
+    "href": "experiments/03_sandpile/index.html#なぜ-jupyter-か",
+    "title": "",
+    "section": "なぜ Jupyter か",
+    "text": "なぜ Jupyter か\n主役は「多数の雪崩を集めて分布を測る」重い統計計算。一度回して図に固定したいので Jupyter（出力込みで保存 → GitHub でそのまま見える）が適任。実験02（marimo・対話）との 使い分け方針は ../../lectures/notebooks_jupyter_vs_marimo.pdf に。 加えて新しい可視化技として、雪崩の連鎖を GIF アニメーションにした。",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 砂山モデル SOC（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/index.html#実験条件",
+    "href": "experiments/03_sandpile/index.html#実験条件",
+    "title": "",
+    "section": "実験条件",
+    "text": "実験条件\n\n\n\n項目\n値\n\n\n\n\n格子サイズ \\(L\\)\n64（統計）/ 80（GIF）\n\n\n崩れ閾値 \\(z_c\\)\n4\n\n\n境界条件\n開放（系外へ散逸）\n\n\n駆動\nランダムな点に 1 粒ずつ\n\n\n記録した雪崩数\n約 12 万回分の駆動\n\n\n乱数シード\n0（再現可能）",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 砂山モデル SOC（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/index.html#実行方法",
+    "href": "experiments/03_sandpile/index.html#実行方法",
+    "title": "",
+    "section": "実行方法",
+    "text": "実行方法\npip install -r ../../requirements.txt\njupyter notebook sandpile_analysis.ipynb     # 解析（出力込みで閲覧可）\npython3 make_gif.py                           # 雪崩アニメ → figures/avalanche.gif",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 砂山モデル SOC（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/index.html#結果",
+    "href": "experiments/03_sandpile/index.html#結果",
+    "title": "",
+    "section": "結果",
+    "text": "結果\n\n雪崩の連鎖（アニメーション）\n\n\n\n雪崩アニメ\n\n\n臨界状態の砂山に 1 粒足すと、崩れが崩れを呼んで連鎖的に広がる様子。\n\n\nべき分布：特徴的スケールの不在（本実験の主役）\n雪崩サイズ \\(s\\) の分布は \\(P(s)\\sim s^{-\\tau}\\) というべき則になり、両対数で直線。 測定値 \\(\\tau\\approx1.1\\)（2D BTW の報告値は手法・ビン取り依存で \\(\\approx1.0\\text{–}1.3\\)）。 高サイズ端の折れ曲がりは有限サイズ・カットオフ。詳細は sandpile_analysis.ipynb （出力込み・GitHub 上で全図が見える）を参照。ノートブックには以下を収録:\n\n平均高さが臨界値（\\(\\approx2.12\\)）へ自己組織化する様子\n臨界状態の砂山配置（ヒートマップ）\n雪崩サイズ分布のべき則と指数フィット\n継続時間・広がりの分布（こちらもべき則）",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 砂山モデル SOC（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/index.html#構成",
+    "href": "experiments/03_sandpile/index.html#構成",
+    "title": "",
+    "section": "構成",
+    "text": "構成\n\n\n\n\n\n\n\nファイル\n役割\n\n\n\n\nsandpile.py\nBTW モデル本体（numpy 並列崩れ・雪崩統計・対数ビン）\n\n\nsandpile_analysis.ipynb\n解析ノートブック（出力プロット埋め込み済み）\n\n\nmake_gif.py\n雪崩アニメを figures/avalanche.gif に書き出す",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 砂山モデル SOC（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/index.html#気づき",
+    "href": "experiments/03_sandpile/index.html#気づき",
+    "title": "",
+    "section": "気づき",
+    "text": "気づき\n\n自己組織化: 平均高さが誰の調整もなしに臨界値へ収束。負のフィードバック （急すぎると大雪崩で散逸、平らだと溜まる）が臨界の傾きへ系を導く。\nべき則 = 特徴的スケールの不在: 「典型的な雪崩の大きさ」が定義できない。 小さな擾乱がときに系全体を巻き込む。\n金融への含意: 大暴落に固有の引き金は要らないかもしれない——臨界状態では ありふれた一粒が連鎖して全体を動かしうる（市場の SOC 仮説）。\n実験02（外から \\(K\\) を動かして臨界を跨ぐ）と本実験（調整なしに臨界へ）の対比が、 複雑系における臨界の二つの現れ方を示す。",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 砂山モデル SOC（解説）"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/sandpile_analysis.html",
+    "href": "experiments/03_sandpile/sandpile_analysis.html",
+    "title": "実験03: 砂山モデル — 自己組織化臨界 (SOC)",
+    "section": "",
+    "text": "Bak–Tang–Wiesenfeld モデル。1 粒ずつ砂を落とすだけで、系はパラメータ調整なしに 臨界状態へ自己組織化し、雪崩の大きさがべき分布になる。\nルール: 各点の高さ \\(z\\ge4\\) なら崩れ、\\(z\\to z-4\\)、上下左右へ 1 粒ずつ。境界外へは散逸。 理論は ../../notes/self_organized_criticality.md を参照。\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport matplotlib.font_manager as fm\nimport sandpile as sp\n\n_jp = \"/usr/share/fonts/truetype/fonts-japanese-gothic.ttf\"\nfm.fontManager.addfont(_jp)\nplt.rcParams[\"font.family\"] = fm.FontProperties(fname=_jp).get_name()\nplt.rcParams[\"axes.unicode_minus\"] = False\nplt.rcParams[\"figure.dpi\"] = 110\n\nL = 64\nrng = np.random.default_rng(0)\nprint(\"格子サイズ\", L, \"x\", L)\n\n格子サイズ 64 x 64",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 ノートブック"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/sandpile_analysis.html#自己組織化を見る",
+    "href": "experiments/03_sandpile/sandpile_analysis.html#自己組織化を見る",
+    "title": "実験03: 砂山モデル — 自己組織化臨界 (SOC)",
+    "section": "1. 「自己組織化」を見る",
+    "text": "1. 「自己組織化」を見る\n空の格子から砂を落とし続けると、平均高さがひとりでに臨界値（2D では \\(\\approx2.12\\)）へ 近づき、そこで止まる。誰も臨界点に調整していないのに、系が自分で臨界へ向かう ——これが self-organized criticality の核心。\n\nz = sp.new_grid(L)\nn_track = 60000\nheights = np.empty(n_track)\nfor k in range(n_track):\n    sp.add_grain(z, rng)\n    sp.relax(z)\n    heights[k] = z.mean()\n\nfig, ax = plt.subplots(figsize=(8, 4))\nax.plot(heights, lw=0.8)\nax.axhline(2.125, color=\"C3\", ls=\"--\", lw=1, label=\"臨界平均高さ ≈ 2.125\")\nax.set_xlabel(\"落とした砂粒の数\"); ax.set_ylabel(\"平均高さ\")\nax.set_title(\"平均高さは臨界値へ自己組織化する\")\nax.legend()\nfig.tight_layout(); plt.show()\nprint(\"最終平均高さ:\", round(heights[-1], 3))\n\n\n\n\n\n\n\n\n最終平均高さ: 2.11",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 ノートブック"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/sandpile_analysis.html#臨界状態の配置",
+    "href": "experiments/03_sandpile/sandpile_analysis.html#臨界状態の配置",
+    "title": "実験03: 砂山モデル — 自己組織化臨界 (SOC)",
+    "section": "2. 臨界状態の配置",
+    "text": "2. 臨界状態の配置\n臨界状態の砂山の高さ分布。フラクタル的な構造が見える。\n\nfig, ax = plt.subplots(figsize=(5.2, 5))\nim = ax.imshow(z, cmap=\"magma\", vmin=0, vmax=3)\nax.set_title(\"臨界状態の砂山の高さ\"); ax.axis(\"off\")\nfig.colorbar(im, ax=ax, fraction=0.046, label=\"高さ z\")\nfig.tight_layout(); plt.show()",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 ノートブック"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/sandpile_analysis.html#雪崩統計を集める",
+    "href": "experiments/03_sandpile/sandpile_analysis.html#雪崩統計を集める",
+    "title": "実験03: 砂山モデル — 自己組織化臨界 (SOC)",
+    "section": "3. 雪崩統計を集める",
+    "text": "3. 雪崩統計を集める\n臨界状態で多数の砂粒を落とし、各雪崩の サイズ（総崩れ回数）・継続時間・ 広がり（面積） を記録する。\n\nstats = sp.drive(z, 120000, rng, warmup=0)  # 既に臨界状態なので warmup 不要\ns = stats[\"sizes\"]; d = stats[\"durations\"]; a = stats[\"areas\"]\nprint(f\"雪崩の数: {len(s)}\")\nprint(f\"サイズ  : min {s.min()}, max {s.max()}, mean {s.mean():.1f}\")\nprint(f\"継続時間: min {d.min()}, max {d.max()}, mean {d.mean():.1f}\")\n\n雪崩の数: 52351\nサイズ  : min 1, max 14007, mean 351.7\n継続時間: min 1, max 910, mean 39.4",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 ノートブック"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/sandpile_analysis.html#べき分布本実験の主役",
+    "href": "experiments/03_sandpile/sandpile_analysis.html#べき分布本実験の主役",
+    "title": "実験03: 砂山モデル — 自己組織化臨界 (SOC)",
+    "section": "4. べき分布（本実験の主役）",
+    "text": "4. べき分布（本実験の主役）\n雪崩サイズ \\(s\\) の分布が \\(P(s)\\sim s^{-\\tau}\\) というべき則になる。両対数で直線。 特徴的なスケールがない（小さな雪崩も巨大な雪崩も同じ法則で起きる）= 臨界の指紋。 対数等間隔ビンで密度を推定し、傾きから指数 \\(\\tau\\) を測る。\n\ndef fit_powerlaw(values, lo_frac=0.0, hi_frac=1.0):\n    c, dens = sp.logbin(values, n_bins=25)\n    # 両端を避けて回帰（有限サイズの折れ曲がりを除く）\n    i0 = int(len(c) * lo_frac); i1 = int(len(c) * hi_frac)\n    lx, ly = np.log10(c[i0:i1]), np.log10(dens[i0:i1])\n    slope, intercept = np.polyfit(lx, ly, 1)\n    return c, dens, -slope, intercept\n\ncs, ds_, tau, b = fit_powerlaw(s, 0.0, 0.7)\nfig, ax = plt.subplots(figsize=(7.5, 5.5))\nax.loglog(cs, ds_, \"o\", ms=6, color=\"C0\", label=\"雪崩サイズ分布 P(s)\")\nxx = np.array([cs.min(), cs.max()])\nax.loglog(xx, 10**b * xx**(-tau), \"C3--\", lw=1.5, label=f\"べき則 fit: τ ≈ {tau:.2f}\")\nax.set_xlabel(\"雪崩サイズ s\"); ax.set_ylabel(\"確率密度 P(s)\")\nax.set_title(\"雪崩サイズはべき分布（特徴的スケールなし＝臨界）\")\nax.legend()\nfig.tight_layout(); plt.show()\nprint(f\"測定したべき指数 τ ≈ {tau:.2f}（2D BTW の報告値は手法・ビン取り依存で ≈1.0〜1.3）\")\n\n\n\n\n\n\n\n\n測定したべき指数 τ ≈ 1.08（2D BTW の報告値は手法・ビン取り依存で ≈1.0〜1.3）",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 ノートブック"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/sandpile_analysis.html#継続時間と広がりもべき則",
+    "href": "experiments/03_sandpile/sandpile_analysis.html#継続時間と広がりもべき則",
+    "title": "実験03: 砂山モデル — 自己組織化臨界 (SOC)",
+    "section": "5. 継続時間と広がりもべき則",
+    "text": "5. 継続時間と広がりもべき則\nサイズだけでなく、雪崩の継続時間 \\(T\\) と広がり（面積）\\(A\\) も別々のべき則に従う。 複数の量が同時にべき則を示すのが臨界現象の典型。\n\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4.6))\nfor ax, vals, name, col in [(ax1, d, \"継続時間 T\", \"C1\"), (ax2, a, \"広がり A\", \"C2\")]:\n    c, dens, ex, bb = fit_powerlaw(vals, 0.0, 0.65)\n    ax.loglog(c, dens, \"o\", ms=5, color=col, label=f\"P({name[0]})\")\n    xx = np.array([c.min(), c.max()])\n    ax.loglog(xx, 10**bb * xx**(-ex), \"C3--\", lw=1.4, label=f\"指数 ≈ {ex:.2f}\")\n    ax.set_xlabel(name); ax.set_ylabel(\"確率密度\"); ax.legend()\n    ax.set_title(f\"{name} の分布\")\nfig.tight_layout(); plt.show()",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 ノートブック"
+    ]
+  },
+  {
+    "objectID": "experiments/03_sandpile/sandpile_analysis.html#まとめ気づき",
+    "href": "experiments/03_sandpile/sandpile_analysis.html#まとめ気づき",
+    "title": "実験03: 砂山モデル — 自己組織化臨界 (SOC)",
+    "section": "まとめ・気づき",
+    "text": "まとめ・気づき\n\n自己組織化: 平均高さが誰の調整もなしに臨界値へ向かう。外部駆動（砂を落とす）と 内部緩和（雪崩）の分離だけで臨界が生まれる。\nべき則 = 特徴的スケールの不在: 雪崩サイズ・継続時間・広がりがすべてべき分布。 「典型的な大きさ」が定義できない。小さな擾乱が時に系全体を巻き込む。\n測定した指数 \\(\\tau\\approx1.1\\)（2D BTW の報告値は手法・ビン取り依存で \\(\\approx1.0\\text{–}1.3\\)）。 指数の厳密な普遍値は今も議論があるが、「数桁にわたる直線＝特徴的スケールの不在」という 定性的事実こそが SOC の本質。\n\n\n金融との接続\n\nファットテール／ベキ則: 株価変動・取引高・市場のクラッシュ規模がべき分布を示す事実は、 市場が SOC 的な臨界状態にあるという仮説（市場の自己組織化臨界）と響き合う。\n大事件に固有の原因は要らない: 砂山の巨大雪崩に「特別な一粒」がないのと同じく、 大暴落も「ありふれた一粒」が臨界状態で連鎖した結果かもしれない、という視点。\n実験02（同期の相転移：制御パラメータを外から調整）と本実験（臨界へ自己組織化：調整不要） の対比が、複雑系における「臨界」の二つの現れ方を示す。",
+    "crumbs": [
+      "ホーム",
+      "実験",
+      "03 ノートブック"
+    ]
+  },
+  {
+    "objectID": "notes/self_organized_criticality.html",
+    "href": "notes/self_organized_criticality.html",
+    "title": "",
+    "section": "",
+    "text": "コード",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "自己組織化臨界 (SOC)"
+    ]
+  },
+  {
+    "objectID": "notes/self_organized_criticality.html#臨界とは何かおさらい",
+    "href": "notes/self_organized_criticality.html#臨界とは何かおさらい",
+    "title": "",
+    "section": "1. 臨界とは何か（おさらい）",
+    "text": "1. 臨界とは何か（おさらい）\n物理の相転移では、ちょうど臨界点で相関長が発散し、ゆらぎがあらゆるスケールで起き、 観測量がべき則に従う。問題は、通常それはパラメータ（温度など）を臨界値に 正確に合わせたときだけ起きること。自然界がいつもその一点に居るのは不自然。\nSOC の主張: ある種の系は、外から調整しなくても自分で臨界状態へ落ち着く。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "自己組織化臨界 (SOC)"
+    ]
+  },
+  {
+    "objectID": "notes/self_organized_criticality.html#btw-砂山モデル",
+    "href": "notes/self_organized_criticality.html#btw-砂山モデル",
+    "title": "",
+    "section": "2. BTW 砂山モデル",
+    "text": "2. BTW 砂山モデル\n\\(L\\times L\\) 格子。各点に高さ \\(z_{ij}\\)。\n\n駆動: ランダムな点に砂を 1 粒落とす（\\(z\\to z+1\\)）。\n緩和（崩れ, toppling）: \\(z_{ij}\\ge z_c\\ (=4)\\) の点は崩れ、 \\[z_{ij}\\to z_{ij}-4,\\qquad \\text{上下左右の隣}\\to +1\\]\n崩れが新たな崩れを誘発し、連鎖が止まるまで続く＝1 回の雪崩 (avalanche)。\n境界から出た砂は系外へ散逸（開放境界）。\n\n雪崩の最中は駆動を止める（時間スケールの分離：ゆっくり溜めて一気に崩す）。 これが SOC の必須要素。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "自己組織化臨界 (SOC)"
+    ]
+  },
+  {
+    "objectID": "notes/self_organized_criticality.html#なぜ自己組織化するのか",
+    "href": "notes/self_organized_criticality.html#なぜ自己組織化するのか",
+    "title": "",
+    "section": "3. なぜ自己組織化するのか",
+    "text": "3. なぜ自己組織化するのか\n\n砂が少ない（平らな）状態：崩れが起きず砂が溜まる一方 → 傾きが増える。\n砂が多い（急な）状態：少し足すだけで巨大雪崩 → 大量に散逸して傾きが減る。\n\nこの負のフィードバックにより、系は「崩れるか崩れないかの境目」＝臨界の傾きへ 自動的に収束する。2D BTW では平均高さが \\(\\approx2.12\\) に落ち着く。 誰も臨界点に調整していないのがポイント。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "自己組織化臨界 (SOC)"
+    ]
+  },
+  {
+    "objectID": "notes/self_organized_criticality.html#べき則-特徴的スケールの不在",
+    "href": "notes/self_organized_criticality.html#べき則-特徴的スケールの不在",
+    "title": "",
+    "section": "4. べき則 = 特徴的スケールの不在",
+    "text": "4. べき則 = 特徴的スケールの不在\n臨界状態では、雪崩のサイズ \\(s\\)（総崩れ回数）の分布が\n\\[P(s)\\sim s^{-\\tau}\\]\nというべき則になる。両対数プロットで直線。べき則の本質は 特徴的なスケールがないこと （指数分布のような「典型的な大きさ」が定義できない）。小さな雪崩が大多数だが、 ときおり系全体を巻き込む巨大雪崩が同じ法則の延長線上で起きる。\n継続時間 \\(T\\) や広がり（面積）\\(A\\) も別々のべき則に従い、互いにべき関係で結ばれる （\\(s\\sim T^{\\gamma}\\) など）。指数の厳密な普遍値（2D BTW の \\(\\tau\\)）は測定法・ビン取りに 敏感で今も議論があるが、SOC の核心は指数の値より「数桁にわたる直線」という定性的事実。\n有限の系では、最大の雪崩がシステムサイズで頭打ちになり、べき則の高サイズ端が 折れ曲がる（有限サイズ・カットオフ）。\\(L\\) を大きくするとカットオフが伸びる。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "自己組織化臨界 (SOC)"
+    ]
+  },
+  {
+    "objectID": "notes/self_organized_criticality.html#soc-の一般的な要件",
+    "href": "notes/self_organized_criticality.html#soc-の一般的な要件",
+    "title": "",
+    "section": "5. SOC の一般的な要件",
+    "text": "5. SOC の一般的な要件\n\n多数の準安定な自由度（溜め込める格子）\nゆっくりした駆動と速い緩和の時間スケール分離\nしきい値付きの局所相互作用（非線形・はじき出し）\n散逸（境界やランダムな取り去り）\n\nこれらが揃うと、系は外部調整なしに臨界へ向かう傾向をもつ。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "自己組織化臨界 (SOC)"
+    ]
+  },
+  {
+    "objectID": "notes/self_organized_criticality.html#金融他分野との接続",
+    "href": "notes/self_organized_criticality.html#金融他分野との接続",
+    "title": "",
+    "section": "6. 金融・他分野との接続",
+    "text": "6. 金融・他分野との接続\n\n市場の SOC 仮説: 株価変動・取引高・暴落規模のべき則（ファットテール）を、 市場が自己組織化臨界にあるとみなして説明する立場。大暴落に「特別な引き金」は 必ずしも要らない——臨界状態ではありふれた一粒が連鎖して全体を巻き込みうる。\n地震 (Gutenberg–Richter)、山火事、ニューロンの雪崩 (neuronal avalanches) も 同型。SOC は分野横断の「べき則の起源」仮説。\n実験02（同期）は制御パラメータ \\(K\\) を外から動かして臨界を跨いだ。本実験は 調整なしに臨界へ自己組織化する。複雑系における臨界の二つの現れ方の対比。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "自己組織化臨界 (SOC)"
+    ]
+  },
+  {
+    "objectID": "notes/self_organized_criticality.html#注意批判",
+    "href": "notes/self_organized_criticality.html#注意批判",
+    "title": "",
+    "section": "注意・批判",
+    "text": "注意・批判\nSOC は強力な比喩だが万能ではない。現実のべき則がすべて SOC 由来とは限らず、 対数正規分布や有限レンジの近似がべき則に見えるだけのこともある（観測データの べき則判定には Clauset らの慎重な統計手法が要る）。比喩に酔わず、機構を問うこと。",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "自己組織化臨界 (SOC)"
+    ]
+  },
+  {
+    "objectID": "notes/self_organized_criticality.html#参考キーワード",
+    "href": "notes/self_organized_criticality.html#参考キーワード",
+    "title": "",
+    "section": "参考キーワード",
+    "text": "参考キーワード\n\nBak, How Nature Works（一般向け）/ Jensen, Self-Organized Criticality（教科書）\nBak, Tang, Wiesenfeld (1987)、Gutenberg–Richter 則、neuronal avalanches\n時間スケール分離、開放境界・散逸、有限サイズスケーリング\nべき則の統計的検定 (Clauset, Shalizi, Newman 2009)",
+    "crumbs": [
+      "ホーム",
+      "数学ノート",
+      "自己組織化臨界 (SOC)"
+    ]
+  }
+]
