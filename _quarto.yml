@@ -1,0 +1,71 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - EXPERIMENTS.md
+    - experiments/*/index.qmd
+    - experiments/01_logistic_map/logistic_map.ipynb
+    - experiments/03_sandpile/sandpile_analysis.ipynb
+    - notes/*.md
+  resources:
+    - lectures/*.pdf
+    - experiments/*/figures/*
+
+website:
+  title: "complex_systems"
+  description: "複雑系の数理を学び・実験で可視化する研究ノート"
+  page-navigation: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: ホーム
+      - href: EXPERIMENTS.md
+        text: ダッシュボード
+    right:
+      - icon: github
+        href: https://github.com/yuitokyouni/complex_systems
+  sidebar:
+    style: floating
+    search: true
+    contents:
+      - text: ホーム
+        href: index.qmd
+      - text: 実験ダッシュボード
+        href: EXPERIMENTS.md
+      - section: "実験"
+        contents:
+          - text: "01 ロジスティック写像（解説）"
+            href: experiments/01_logistic_map/index.qmd
+          - text: "01 ノートブック"
+            href: experiments/01_logistic_map/logistic_map.ipynb
+          - text: "02 Kuramoto 同期（解説）"
+            href: experiments/02_kuramoto/index.qmd
+          - text: "03 砂山モデル SOC（解説）"
+            href: experiments/03_sandpile/index.qmd
+          - text: "03 ノートブック"
+            href: experiments/03_sandpile/sandpile_analysis.ipynb
+      - section: "数学ノート"
+        contents:
+          - text: "非線形力学系"
+            href: notes/nonlinear_dynamics.md
+          - text: "同期現象"
+            href: notes/synchronization.md
+          - text: "自己組織化臨界 (SOC)"
+            href: notes/self_organized_criticality.md
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    code-tools: true
+    code-copy: true
+    fig-cap-location: bottom
+    grid:
+      sidebar-width: 320px
+
+execute:
+  enabled: false   # 既存の出力（ノートブックの埋め込み図）を使い、重い再計算をしない
+
+lang: ja

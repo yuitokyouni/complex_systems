@@ -1,0 +1,7 @@
+---
+format:
+  html:
+    page-layout: article
+---
+
+{{< include README.md >}}

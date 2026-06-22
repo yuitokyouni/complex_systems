@@ -1,0 +1,55 @@
+---
+title: "complex_systems"
+subtitle: "複雑系の数理を学び・実験で可視化する研究ノート"
+---
+
+金融以外の複雑系について、**数理を学び・実験で可視化し・楽しく知識を増やす**ためのサイト。
+このページは GitHub リポジトリの内容を Quarto でブラウズ可能なサイトに束ねたもの。
+
+## 目的
+
+1. **数学的基礎**を身につけ、複雑系の数理（ABM 以外のアプローチを含む）に詳しくなる
+2. **面白い実験を可視化**して、理解を体感に落とし込む
+3. **研究の道具立て**（ツール・手法）を用途別に使い分けられるようになる
+
+## 概念マップ
+
+```{mermaid}
+flowchart TB
+    CS["複雑系の数理"]
+    CS --> ND["非線形力学系"]
+    CS --> SY["同期現象"]
+    CS --> CR["臨界・相転移"]
+
+    ND --> E01["実験01 ロジスティック写像<br/>秩序 → カオス"]
+    SY --> E02["実験02 Kuramoto<br/>無秩序 → 秩序（同期）"]
+    CR --> E02
+    CR --> E03["実験03 砂山 BTW<br/>自己組織化臨界・べき則"]
+
+    E02 -. "外から K を調整して臨界を跨ぐ" .-> CRIT(("臨界"))
+    E03 -. "調整なしに臨界へ自己組織化" .-> CRIT
+
+    classDef done fill:#d7ebff,stroke:#2a6090,color:#12243a;
+    class E01,E02,E03 done;
+```
+
+## 実験
+
+| # | 問い | 主役の結果 | スタック |
+|---|------|-----------|----------|
+| [01 ロジスティック写像](experiments/01_logistic_map/) | 単純な式からカオスは生まれるか | 周期倍分岐 → カオス、$\delta\approx4.67$ | Jupyter |
+| [02 Kuramoto](experiments/02_kuramoto/) | バラバラの振動子はいつ同期するか | $K_c\approx1.60$ で同期の相転移 | marimo |
+| [03 砂山モデル](experiments/03_sandpile/) | なぜ自然界はべき則だらけか | 臨界へ自己組織化、$P(s)\sim s^{-\tau}$ | Jupyter |
+
+詳しい一覧・パラメータ条件・横断テーマは [実験ダッシュボード](EXPERIMENTS.md) へ。
+
+## 数学ノート
+
+- [非線形力学系](notes/nonlinear_dynamics.md) — 不動点・分岐・カオス・Lyapunov・Feigenbaum
+- [同期現象](notes/synchronization.md) — 秩序変数・平均場・相転移・臨界結合
+- [自己組織化臨界 (SOC)](notes/self_organized_criticality.md) — 臨界・べき則・金融との接続
+
+## 道具の使い分け
+
+実験ごとに Jupyter / marimo を使い分けている。考え方は講義資料
+[ノートブック実験環境入門](lectures/notebooks_jupyter_vs_marimo.pdf) を参照。

@@ -30,9 +30,9 @@ flowchart TB
 
 | # | 問い | モデル / 式 | 主役の結果 | 鍵概念 | スタック |
 |---|------|-------------|-----------|--------|----------|
-| [01](experiments/01_logistic_map/) | 単純な式からカオスは生まれるか | $x_{n+1}=r\,x_n(1-x_n)$ | 周期倍分岐 → カオス、$\delta\approx4.67$ | 分岐・カオス・初期値鋭敏性・普遍性 | Jupyter |
-| [02](experiments/02_kuramoto/) | バラバラの振動子はいつ同期するか | $\dot\theta_i=\omega_i+\frac{K}{N}\sum_j\sin(\theta_j-\theta_i)$ | $K_c\approx1.60$ で同期の相転移 | 秩序変数・平均場・二次相転移 | marimo |
-| [03](experiments/03_sandpile/) | なぜ自然界はべき則だらけか | BTW 砂山（$z_c=4$, 開放境界） | 臨界へ自己組織化、$P(s)\sim s^{-\tau},\ \tau\approx1.1$ | SOC・べき則・時間スケール分離 | Jupyter |
+| 01 | 単純な式からカオスは生まれるか | $x_{n+1}=r\,x_n(1-x_n)$ | 周期倍分岐 → カオス、$\delta\approx4.67$ | 分岐・カオス・初期値鋭敏性・普遍性 | [Jupyter](experiments/01_logistic_map/) |
+| 02 | バラバラの振動子はいつ同期するか | $\dot\theta_i=\omega_i+\frac{K}{N}\sum_j\sin(\theta_j-\theta_i)$ | $K_c\approx1.60$ で同期の相転移 | 秩序変数・平均場・二次相転移 | [marimo](experiments/02_kuramoto/) |
+| 03 | なぜ自然界はべき則だらけか | BTW 砂山（$z_c=4$, 開放境界） | 臨界へ自己組織化、$P(s)\sim s^{-\tau},\ \tau\approx1.1$ | SOC・べき則・時間スケール分離 | [Jupyter](experiments/03_sandpile/) |
 
 ## パラメータ条件（数値設定）
 

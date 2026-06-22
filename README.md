@@ -58,3 +58,22 @@ complex_systems/
 ```bash
 pip install -r requirements.txt
 ```
+
+## ブラウズできる研究サイト（Quarto）
+
+実験・ノート・数式・図を 1 つのサイトに束ねて通し読みできる（[Quarto](https://quarto.org) 製）。
+
+```bash
+# Quarto CLI を入れたうえで:
+quarto preview     # ローカルでライブプレビュー（編集が即反映）
+quarto render      # _site/ に静的サイトを書き出し
+```
+
+push すると GitHub Actions（`.github/workflows/publish-site.yml`）が自動でレンダリングし、
+`gh-pages` ブランチへ公開する。**初回のみ** リポジトリの Settings → Pages で
+Source を `gh-pages` ブランチに設定すると、`https://yuitokyouni.github.io/complex_systems/`
+で閲覧できるようになる。
+
+> サイトはビルド成果物なので git 管理しない（`_site/`, `.quarto/` は `.gitignore` 済み）。
+> 実験ノートブックは出力を埋め込み済みのため、サイト生成時に重い再計算は走らない
+> (`execute: enabled: false`)。

@@ -14,3 +14,7 @@ __marimo__/
 
 # 出力（必要なら experiments 配下で個別に管理）
 *.tmp
+
+# Quarto（サイトは CI でビルドして公開する）
+/_site/
+/.quarto/

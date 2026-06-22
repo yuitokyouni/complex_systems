@@ -1,0 +1,38 @@
+name: Publish Quarto site
+
+on:
+  push:
+    branches:
+      - main
+      - claude/lucid-hamilton-17hkv1
+  workflow_dispatch:
+
+permissions:
+  contents: write   # gh-pages ブランチへの push に必要
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # execute: enabled: false なので重い再計算はしない。
+      # ノートブックの埋め込み出力の読み取りに必要な最小限のみ入れる。
+      - name: Install Python deps
+        run: pip install jupyter nbformat
+
+      - name: Render and publish to gh-pages
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
