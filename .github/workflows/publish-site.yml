@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - claude/lucid-hamilton-17hkv1
   workflow_dispatch:
 
 permissions:
